@@ -4,11 +4,13 @@ import {
 	getAuth,
 	GoogleAuthProvider,
 	signInWithPopup,
+	FacebookAuthProvider
 } from "firebase/auth";
 import { useAuth } from "../lib/authContext";
 import Image from "next/image";
 import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify'
+import { Button } from "@mui/material";
 
 const Home: NextPage = () => {
 	const { user, loading } = useAuth();
@@ -36,6 +38,23 @@ const Home: NextPage = () => {
 			});
 	}
 
+	function loginWithFB() {
+		const fbProvider = new FacebookAuthProvider();
+
+		signInWithPopup(auth, fbProvider)
+			.then((result) => {
+				const credential = FacebookAuthProvider.credentialFromResult(result);
+				const user = result.user;
+				console.log("signed in with facebook", user);
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				const email = error.email;
+				const credential = FacebookAuthProvider.credentialFromError(error);
+			});
+	}
+
 	return (
 		<>
 			<Head>
@@ -44,9 +63,9 @@ const Home: NextPage = () => {
 			</Head>
 			<div className='flex w-full max-h-full bg-zinc-100 p-8'>
 				<ToastContainer />
-				<div className='flex flex-col items-center m-auto  bg-white rounded-2xl p-4 space-y-6'>
+				<div className='flex flex-col items-center m-auto  bg-secondary rounded-2xl p-4 space-y-6'>
 					<div className='flex flex-col items-center space-y-6'>
-						<div className='flex items-center  bg-white rounded-full shadow-xl w-fit '>
+						<div className='flex items-center bg-secondary rounded-full shadow-xl w-fit '>
 							<Image
 								src='/logo.svg'
 								alt='nextjs'
@@ -59,9 +78,10 @@ const Home: NextPage = () => {
 								Welcome back to QVault{' '}
 							</h2>
 						</div>
-						<button
+						<Button
+							variant="contained"
 							onClick={() => loginWithGoogle()}
-							className='flex p-4 transition bg-black rounded-xl space-x-2 font-inter hover:bg-zinc-800'
+							className='bg-primary hover:bg-accent'
 						>
 							<Image
 								src='/google.svg'
@@ -72,13 +92,28 @@ const Home: NextPage = () => {
 							<span className='dark:text-white text-white'>
 								Continue with Google
 							</span>
-						</button>
+						</Button>
+						<Button
+							variant="contained"
+							onClick={() => loginWithFB()}
+							className='bg-primary hover:bg-accent'
+						>
+							<Image
+								src='/google.svg'
+								alt='facebook'
+								width={24}
+								height={24}
+							/>
+							<span className='dark:text-text text-text'>
+								Continue with Facebook
+							</span>
+						</Button>
 					</div>
 					<div className='flex place-content-center w-full'>
 						<p className='text-sm text-center text-zinc-600'>
 							Don{`'`}t have an account? &nbsp;
 							<Link href='/signup'>
-								<span className='text-blue-500  underline text-medium '>
+								<span className='text-primary hover:text-secondary underline text-medium '>
 									Sign up
 								</span>
 							</Link>

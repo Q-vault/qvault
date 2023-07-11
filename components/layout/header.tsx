@@ -12,15 +12,11 @@ export default function Header(props: any) {
 				</Link>
 			</div>
 
-			<div className="m-auto space-x-2">
+			<div className=" m-auto space-x-2">
 				{!user && !loading ? (
 					<>
-						<Link passHref href="/signup">
-							<button className="m-auto"> Sign Up </button>
-						</Link>
-
-						<Link passHref href="/signin">
-							<button className="m-auto"> Sign In </button>
+						<Link passHref href="/login">
+							<button className="m-auto"> Log In </button>
 						</Link>
 					</>
 				) : null}
