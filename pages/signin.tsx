@@ -3,12 +3,9 @@ import Head from "next/head";
 import {
 	getAuth,
 	signInWithEmailAndPassword,
-	GoogleAuthProvider,
-	signInWithPopup,
 } from "firebase/auth";
 import { useState } from "react";
 import { useAuth } from "../lib/authContext";
-import Link from "next/link";
 import { Button } from "@mui/material";
 import Image from "next/image";
 import { ToastContainer, toast } from 'react-toastify'
@@ -39,29 +36,12 @@ const Home: NextPage = () => {
 			});
 	}
 
-	function loginWithGoogle() {
-		const googleProvider = new GoogleAuthProvider();
-
-		signInWithPopup(auth, googleProvider)
-			.then((result) => {
-				const credential = GoogleAuthProvider.credentialFromResult(result);
-				const user = result.user;
-				console.log("sign with google", user);
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				const email = error.email;
-				const credential = GoogleAuthProvider.credentialFromError(error);
-			});
-	}
-
 	const router = useRouter()
 
 	return (
 		<>
 			<Head>
-				<title>Signin</title>
+				<title>Sign In</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<div className='flex w-full max-h-full bg-zinc-100 p-8'>

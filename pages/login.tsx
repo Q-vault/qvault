@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 			.then((result) => {
 				const credential = GoogleAuthProvider.credentialFromResult(result);
 				const user = result.user;
-				console.log("sign with google", user);
+				console.log("signed in with google", user);
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -39,7 +39,7 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Signin</title>
+				<title>Login</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<div className='flex w-full max-h-full bg-zinc-100 p-8'>

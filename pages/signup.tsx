@@ -57,7 +57,7 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Signup</title>
+				<title>Sign Up</title>
 			</Head>
 			<div className='flex w-full max-h-full bg-zinc-100 p-8'>
 				<ToastContainer />
