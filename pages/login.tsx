@@ -88,8 +88,8 @@ const Home: NextPage = () => {
 								alt='google'
 								width={24}
 								height={24}
-							/>
-							<span className='dark:text-white text-white'>
+							/>{' '}
+							<span className='dark:text-text text-text pl-5'>
 								Continue with Google
 							</span>
 						</Button>
@@ -99,12 +99,12 @@ const Home: NextPage = () => {
 							className='bg-primary hover:bg-accent'
 						>
 							<Image
-								src='/google.svg'
+								src='/facebook.svg'
 								alt='facebook'
 								width={24}
 								height={24}
-							/>
-							<span className='dark:text-text text-text'>
+							/>{' '}
+							<span className='dark:text-text text-text pl-1'>
 								Continue with Facebook
 							</span>
 						</Button>
@@ -113,7 +113,7 @@ const Home: NextPage = () => {
 						<p className='text-sm text-center text-zinc-600'>
 							Don{`'`}t have an account? &nbsp;
 							<Link href='/signup'>
-								<span className='text-primary hover:text-secondary underline text-medium '>
+								<span className='text-text hover:text-secondary underline text-medium '>
 									Sign up
 								</span>
 							</Link>
