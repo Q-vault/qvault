@@ -23,6 +23,7 @@
     "@mui/material": "^5.13.7",
     "firebase": "^9.12.1",
     "firebase-admin": "^9.11.1",
+    "framer-motion": "^10.12.18",
     "google": "link:next/font/google",
     "next": "^13.4.9",
     "nookies": "^2.5.2",
@@ -33,6 +34,8 @@
   "devDependencies": {
     "@types/react": "17.0.20",
     "autoprefixer": "^10.3.4",
+    "eslint": "8.44.0",
+    "eslint-config-next": "13.4.9",
     "husky": "^8.0.0",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.15",

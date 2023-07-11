@@ -1,0 +1,32 @@
+[
+  {
+    "name": "facebook",
+    "link": "https://www.facebook.com",
+    "image": "https://www.pngrepo.com/download/158427/facebook.png"
+  },
+  {
+    "name": "twitter",
+    "link": "https://twitter.com",
+    "image": "https://www.pngrepo.com/download/183608/twitter.png"
+  },
+  {
+    "name": "linkedin",
+    "link": "https://www.linkedin.com",
+    "image": "https://www.pngrepo.com/download/157006/linkedin.png"
+  },
+  {
+    "name": "github",
+    "link": "https://github.com/Q-vault/",
+    "image": "https://www.pngrepo.com/download/343674/github.png"
+  },
+  {
+    "name": "Instagram",
+    "link": "https://www.instagram.com",
+    "image": "https://www.pngrepo.com/download/111199/instagram.png"
+  },
+  {
+    "name": "mail us",
+    "link": "mailto:qvaulter@gmail.com",
+    "image": "https://www.pngrepo.com/download/1210/mail.png"
+  }
+]
