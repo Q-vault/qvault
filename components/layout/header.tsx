@@ -24,12 +24,8 @@ export default function Header(props: any) {
 			<div className="flex flex-col absolute right-0 mt-2.5 mr-2.5">
 				{!user && !loading ? (
 					<div className="flex flex-row">
-						<Link passHref href="/signup">
-							<Button variant="outlined" className="mr-2.5"> Sign Up </Button>
-						</Link>
-
-						<Link passHref href="/signin">
-							<Button variant="outlined" className="mr-2.5"> Sign In </Button>
+						<Link passHref href="/login">
+							<Button variant="outlined" className="mr-2.5"> Log In </Button>
 						</Link>
 					</div>
 				) : null}

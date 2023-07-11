@@ -7,8 +7,6 @@
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
-signup.tsx
-signin.tsx
 # testing
 /coverage
 
