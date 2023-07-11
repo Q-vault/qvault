@@ -2,20 +2,15 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import {
 	getAuth,
-	signInWithEmailAndPassword,
 	GoogleAuthProvider,
 	signInWithPopup,
 } from "firebase/auth";
-import { useState } from "react";
 import { useAuth } from "../lib/authContext";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify'
-import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
-	const [email, setEmail] = useState<string>("");
-	const [password, setPassword] = useState<string>("");
 	const { user, loading } = useAuth();
 
 	if (loading) return null;
@@ -23,20 +18,6 @@ const Home: NextPage = () => {
 	if (user) return <h1>Already Logged in!</h1>;
 
 	const auth = getAuth();
-
-	function login() {
-		signInWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
-				const user = userCredential.user;
-				console.log("success", user);
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				console.log("error", errorMessage);
-				window.alert(errorMessage);
-			});
-	}
 
 	function loginWithGoogle() {
 		const googleProvider = new GoogleAuthProvider();
@@ -54,8 +35,6 @@ const Home: NextPage = () => {
 				const credential = GoogleAuthProvider.credentialFromError(error);
 			});
 	}
-
-	const router = useRouter()
 
 	return (
 		<>
@@ -80,21 +59,8 @@ const Home: NextPage = () => {
 								Welcome back to QVault{' '}
 							</h2>
 						</div>
-						<input
-							type="email"
-							onChange={(e) => setEmail(e.target.value)}
-							className="border border-current	"
-						/>
-						<br />
-						<input
-							type="password"
-							onChange={(e) => setPassword(e.target.value)}
-							className="border border-current	"
-						/>
-						<br />
-						<button onClick={() => login()}>Login</button>
 						<button
-							onClick={() => router.replace('/login')}
+							onClick={() => loginWithGoogle()}
 							className='flex p-4 transition bg-black rounded-xl space-x-2 font-inter hover:bg-zinc-800'
 						>
 							<Image
@@ -108,29 +74,18 @@ const Home: NextPage = () => {
 							</span>
 						</button>
 					</div>
+					<div className='flex place-content-center w-full'>
+						<p className='text-sm text-center text-zinc-600'>
+							Don{`'`}t have an account? &nbsp;
+							<Link href='/signup'>
+								<span className='text-blue-500  underline text-medium '>
+									Sign up
+								</span>
+							</Link>
+						</p>
+					</div>
 				</div>
 			</div>
-			{/* <div className="m-auto my-24 w-1/3 h-1/3 divide-y-4 space-y-1">
-				<div className="space-y-1">
-					<input
-						type="email"
-						onChange={(e) => setEmail(e.target.value)}
-						className="border border-current	"
-					/>
-					<br />
-					<input
-						type="password"
-						onChange={(e) => setPassword(e.target.value)}
-						className="border border-current	"
-					/>
-					<br />
-					<button onClick={() => login()}>Login</button>
-				</div>
-				<br />
-				<div>
-					<Link href={"/login"}>Login with Google</Link>
-				</div>
-			</div> */}
 		</>
 	);
 };
