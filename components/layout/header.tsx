@@ -16,25 +16,25 @@ export default function Header(props: any) {
 				{!user && !loading ? (
 					<>
 						<Link passHref href="/signup">
-							<button className="m-auto"> Signup</button>
+							<button className="m-auto"> Sign Up </button>
 						</Link>
 
 						<Link passHref href="/signin">
-							<button className="m-auto"> Signin</button>
+							<button className="m-auto"> Sign In </button>
 						</Link>
 					</>
 				) : null}
 				{user ? (
 					<>
 						<Link href="/privatessr">
-							<button> PrivateSSR</button>
+							<button> Private SSR</button>
 						</Link>
 
 						<Link href="/private">
-							<button> Private</button>
+							<button> Private </button>
 						</Link>
 
-						<button onClick={signOut}> Signout</button>
+						<button onClick={signOut}> Sign Out </button>
 					</>
 				) : null}
 			</div>

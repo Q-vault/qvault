@@ -59,7 +59,7 @@ const Home: NextPage = () => {
 			<Head>
 				<title>Signup</title>
 			</Head>
-			<div className='flex w-screen h-screen bg-zinc-100 p-8'>
+			<div className='flex w-full max-h-full bg-zinc-100 p-8'>
 				<ToastContainer />
 				<div className='flex flex-col items-center m-auto  bg-white rounded-2xl p-4 space-y-6'>
 					<div className='flex flex-col items-center space-y-6'>
@@ -76,19 +76,32 @@ const Home: NextPage = () => {
 								Welcome to QVault{' '}
 							</h2>
 						</div>
-						<input
-							type="email"
-							onChange={(e) => setEmail(e.target.value)}
-							className="border border-current	"
-						/>
-						<br />
-						<input
-							type="password"
-							onChange={(e) => setPassword(e.target.value)}
-							className="border border-current	"
-						/>
-						<br />
-						<button onClick={() => createUserCredentials()}>Sign Up</button>
+						<div>
+							<label htmlFor="email" className="font-inter">Email</label>
+							{' '}
+							<input
+								id="email"
+								type="email"
+								onChange={(e) => setEmail(e.target.value)}
+								className="border border-current"
+							/>
+						</div>
+						<div>
+							<label htmlFor="pass" className="font-inter">Password</label>
+							{' '}
+							<input
+								id="pass"
+								type="password"
+								onChange={(e) => setPassword(e.target.value)}
+								className="border border-current"
+							/>
+						</div>
+						<button 
+							onClick={() => createUserCredentials()}
+							className='flex p-4 transition text-white bg-black rounded-xl space-x-2 font-inter hover:bg-zinc-800'
+						>
+							Sign Up
+						</button>
 						<button
 							onClick={() => router.replace('/login')}
 							className='flex p-4 transition bg-black rounded-xl space-x-2 font-inter hover:bg-zinc-800'

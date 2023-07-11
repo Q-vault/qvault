@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import { useAuth } from "../lib/authContext";
 import Link from "next/link";
+import { Button } from "@mui/material";
 import Image from "next/image";
 import { ToastContainer, toast } from 'react-toastify'
 import { useRouter } from "next/router";
@@ -63,7 +64,7 @@ const Home: NextPage = () => {
 				<title>Signin</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className='flex w-screen h-screen bg-zinc-100 p-8'>
+			<div className='flex w-full max-h-full bg-zinc-100 p-8'>
 				<ToastContainer />
 				<div className='flex flex-col items-center m-auto  bg-white rounded-2xl p-4 space-y-6'>
 					<div className='flex flex-col items-center space-y-6'>
@@ -80,20 +81,35 @@ const Home: NextPage = () => {
 								Welcome back to QVault{' '}
 							</h2>
 						</div>
-						<input
-							type="email"
-							onChange={(e) => setEmail(e.target.value)}
-							className="border border-current	"
-						/>
-						<br />
-						<input
-							type="password"
-							onChange={(e) => setPassword(e.target.value)}
-							className="border border-current	"
-						/>
-						<br />
-						<button onClick={() => login()}>Login</button>
-						<button
+						<div>
+							<label htmlFor="email" className="font-inter">Email</label>
+							{' '}
+							<input
+								id="email"
+								type="email"
+								onChange={(e) => setEmail(e.target.value)}
+								className="border border-current"
+							/>
+						</div>
+						<div>
+							<label htmlFor="pass" className="font-inter">Password</label>
+							{' '}
+							<input
+								id="pass"
+								type="password"
+								onChange={(e) => setPassword(e.target.value)}
+								className="border border-current"
+							/>
+						</div>
+						<Button
+							variant="contained" 
+							onClick={() => login()}
+							className='flex p-4 transition text-white bg-black rounded-xl space-x-2 font-inter hover:bg-zinc-800'	
+						>
+							<span className='dark:text-white text-white'>Login</span>
+						</Button>
+						<Button
+							variant="contained"
 							onClick={() => router.replace('/login')}
 							className='flex p-4 transition bg-black rounded-xl space-x-2 font-inter hover:bg-zinc-800'
 						>
@@ -106,7 +122,7 @@ const Home: NextPage = () => {
 							<span className='dark:text-white text-white'>
 								Continue with Google
 							</span>
-						</button>
+						</Button>
 					</div>
 				</div>
 			</div>

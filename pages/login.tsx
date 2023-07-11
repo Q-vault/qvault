@@ -42,7 +42,7 @@ const Home: NextPage = () => {
 				<title>Signin</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className='flex w-screen h-screen bg-zinc-100 p-8'>
+			<div className='flex w-full max-h-full bg-zinc-100 p-8'>
 				<ToastContainer />
 				<div className='flex flex-col items-center m-auto  bg-white rounded-2xl p-4 space-y-6'>
 					<div className='flex flex-col items-center space-y-6'>
