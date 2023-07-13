@@ -11,9 +11,29 @@ import Image from "next/image";
 import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify'
 import { Button } from "@mui/material";
+import { useState, useEffect } from "react";
 
 const Home: NextPage = () => {
 	const { user, loading } = useAuth();
+	const [isMobile, setIsMobile] = useState(false)
+
+	useEffect(() => {
+		const handleResize = () => {
+			const isMobileView = window.innerWidth < 600;
+			setIsMobile(isMobileView);
+		};
+
+		// Add event listener to window resize
+		window.addEventListener('resize', handleResize);
+
+		// Initial check
+		handleResize();
+
+		// Clean up event listener on unmount
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
 
 	if (loading) return null;
 
@@ -63,7 +83,65 @@ const Home: NextPage = () => {
 			</Head>
 			<div className='flex w-full max-h-full bg-zinc-100 p-8'>
 				<ToastContainer />
-				<div className='flex flex-col items-center m-auto  bg-secondary rounded-2xl p-4 space-y-6'>
+				{isMobile ? (
+					<div className='flex flex-col items-center m-auto bg-secondary rounded-2xl p-4 space-y-6'>
+						<div className='flex flex-col items-center space-y-6'>
+							<div className='flex items-center bg-secondary rounded-full shadow-xl w-fit '>
+								<Image
+									src='/logo.svg'
+									alt='nextjs'
+									width={50}
+									height={50}
+								/>
+							</div>
+							<div className='flex flex-col items-center space-y-2'>
+								<h2 className='text-lg font-bold font-archivo text-black '>
+									Welcome back to QVault{' '}
+								</h2>
+							</div>
+							<Button
+								variant="contained"
+								onClick={() => loginWithGoogle()}
+								className='bg-primary hover:bg-accent'
+							>
+								<Image
+									src='/google.svg'
+									alt='google'
+									width={20}
+									height={20}
+								/>{' '}
+								<span className='dark:text-text text-text pl-5 text-xs'>
+									Continue with Google
+								</span>
+							</Button>
+							<Button
+								variant="contained"
+								onClick={() => loginWithFB()}
+								className='bg-primary hover:bg-accent'
+							>
+								<Image
+									src='/facebook.svg'
+									alt='facebook'
+									width={20}
+									height={20}
+								/>{' '}
+								<span className='dark:text-text text-text pl-1 text-xs'>
+									Continue with Facebook
+								</span>
+							</Button>
+						</div>
+						<div className='flex place-content-center w-full'>
+							<p className='text-sm text-center text-zinc-600'>
+								Don{`'`}t have an account? &nbsp;
+								<Link href='/signup'>
+									<span className='text-text hover:text-secondary underline text-medium '>
+										Sign up
+									</span>
+								</Link>
+							</p>
+						</div>
+					</div>
+				) : <div className='flex flex-col items-center m-auto mt-12 bg-secondary rounded-2xl p-4 space-y-6'>
 					<div className='flex flex-col items-center space-y-6'>
 						<div className='flex items-center bg-secondary rounded-full shadow-xl w-fit '>
 							<Image
@@ -120,6 +198,7 @@ const Home: NextPage = () => {
 						</p>
 					</div>
 				</div>
+				}
 			</div>
 		</>
 	);
