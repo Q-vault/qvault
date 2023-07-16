@@ -4,7 +4,7 @@ import {
 	getAuth,
 	GoogleAuthProvider,
 	signInWithPopup,
-	FacebookAuthProvider
+	// GithubAuthProvider
 } from "firebase/auth";
 import { useAuth } from "../lib/authContext";
 import Image from "next/image";
@@ -58,22 +58,26 @@ const Home: NextPage = () => {
 			});
 	}
 
-	function loginWithFB() {
-		const fbProvider = new FacebookAuthProvider();
+	// function loginWithFB() {
+	// 	const ghProvider = new GithubAuthProvider();
 
-		signInWithPopup(auth, fbProvider)
-			.then((result) => {
-				const credential = FacebookAuthProvider.credentialFromResult(result);
-				const user = result.user;
-				console.log("signed in with facebook", user);
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				const email = error.email;
-				const credential = FacebookAuthProvider.credentialFromError(error);
-			});
-	}
+	// 	signInWithPopup(auth, ghProvider)
+	// 		.then((result) => {
+	// 			const credential = GithubAuthProvider.credentialFromResult(result);
+	// 			const user = result.user;
+	// 			console.log("signed in with facebook", user);
+	// 		})
+	// 		.catch((error) => {
+	// 			if(error.code==='auth/account-exists-with-different-credential'){
+	// 				let email =  error.email;
+	// 				console.log(error)
+	// 			}
+	// 			// const errorCode = error.code;
+	// 			// const errorMessage = error.message;
+	// 			// const email = error.email;
+	// 			const credential = GithubAuthProvider.credentialFromError(error);
+	// 		});
+	// }
 
 	return (
 		<>
@@ -114,7 +118,7 @@ const Home: NextPage = () => {
 									Continue with Google
 								</span>
 							</Button>
-							<Button
+							{/* <Button
 								variant="contained"
 								onClick={() => loginWithFB()}
 								className='bg-primary hover:bg-accent'
@@ -128,7 +132,7 @@ const Home: NextPage = () => {
 								<span className='dark:text-text text-text pl-1 text-xs'>
 									Continue with Facebook
 								</span>
-							</Button>
+							</Button> */}
 						</div>
 						<div className='flex place-content-center w-full'>
 							<p className='text-sm text-center text-zinc-600'>
@@ -171,7 +175,7 @@ const Home: NextPage = () => {
 								Continue with Google
 							</span>
 						</Button>
-						<Button
+						{/* <Button
 							variant="contained"
 							onClick={() => loginWithFB()}
 							className='bg-primary hover:bg-accent'
@@ -185,7 +189,7 @@ const Home: NextPage = () => {
 							<span className='dark:text-text text-text pl-1'>
 								Continue with Facebook
 							</span>
-						</Button>
+						</Button> */}
 					</div>
 					<div className='flex place-content-center w-full'>
 						<p className='text-sm text-center text-zinc-600'>
