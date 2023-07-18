@@ -21,6 +21,7 @@
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.7",
+    "axios": "^1.4.0",
     "firebase": "^9.12.1",
     "firebase-admin": "^9.11.1",
     "framer-motion": "^10.12.18",

@@ -41,3 +41,5 @@ const storagePromise: Promise<FirebaseStorage> = initializeFirebaseApp().then(ge
 export const auth: Promise<Auth> = authPromise;
 export const db: Promise<Firestore> = dbPromise;
 export const storage: Promise<FirebaseStorage> = storagePromise;
+
+export {app}
