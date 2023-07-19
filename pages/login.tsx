@@ -115,33 +115,32 @@ const Home: NextPage = () => {
 			})
 			.catch((error) => {
 				if (error.code === 'auth/account-exists-with-different-credential') {
-					// let authtoken = error.customData._tokenResponse.oauthAccessToken;
-					// let pendingProvider = error.customData._tokenResponse.providerId;
-					// let email =  error.customData.email;
-					// fetchSignInMethodsForEmail(auth, email).then(function (methods) {
-					// 	var provider = getProviderForProviderId(methods[0]);
-					// 	if (provider) {
-					// 		signInWithPopup(auth, provider).then(function (result) {
-					// 			if (pendingProvider) {
-					// 				let pendingCred;
-					// 				if(pendingProvider === 'github.com'){
-					// 					pendingCred = GithubAuthProvider.credential(authtoken)
-					// 				}
-					// 				if(pendingCred) {
-					// 					linkWithCredential(result.user, pendingCred).then(function (usercred) {
-					// 						router.push('/');
-					// 					});
-					// 				}
-					// 			} else {
-					// 				showToast('Invalid current provider', 'error')
-					// 			}
-					// 		});
-					// 	}
-					// 	else {
-					// 		showToast('Invalid Primary Provider', "error");
-					// 	}
-					// });
-					console.log(error.customData._tokenResponse)
+					let authtoken = error.customData._tokenResponse.oauthAccessToken;
+					let pendingProvider = error.customData._tokenResponse.providerId;
+					let email =  error.customData.email;
+					fetchSignInMethodsForEmail(auth, email).then(function (methods) {
+						var provider = getProviderForProviderId(methods[0]);
+						if (provider) {
+							signInWithPopup(auth, provider).then(function (result) {
+								if (pendingProvider) {
+									let pendingCred;
+									if(pendingProvider === 'github.com'){
+										pendingCred = GithubAuthProvider.credential(authtoken)
+									}
+									if(pendingCred) {
+										linkWithCredential(result.user, pendingCred).then(function (usercred) {
+											router.push('/');
+										});
+									}
+								} else {
+									showToast('Invalid current provider', 'error')
+								}
+							});
+						}
+						else {
+							showToast('Invalid Primary Provider', "error");
+						}
+					});
 				} else {
 					const credential = GithubAuthProvider.credentialFromError(error);
 					console.error(error)
@@ -158,7 +157,7 @@ const Home: NextPage = () => {
 			</Head>
 			<div className='flex w-full max-h-full bg-zinc-100 p-8'>
 				<ToastContainer />
-				<div className='flex flex-col items-center m-auto bg-secondary rounded-2xl p-4 space-y-6'>
+				<div className={`flex flex-col items-center m-auto bg-secondary rounded-2xl space-y-6 ${isMobile ? 'p-4' : 'p-12' }`}>
 					<div className='flex flex-col items-center space-y-6'>
 						<div className='flex items-center bg-secondary rounded-full shadow-xl w-fit '>
 							<Image

@@ -94,18 +94,6 @@ export default function Header(props: any) {
 				) : null}
 				{user ? (
 					<div className="flex flex-row">
-						<Link href="/privatessr">
-							<Button variant="outlined" className="mr-2.5">
-								Private SSR
-							</Button>
-						</Link>
-
-						<Link href="/private">
-							<Button variant="outlined" className="mr-2.5">
-								Private
-							</Button>
-						</Link>
-
 						<Button onClick={signOut} variant="outlined" className="mr-2.5" color="error">
 							Sign Out
 						</Button>
